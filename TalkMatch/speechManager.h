@@ -7,6 +7,10 @@ class SpeechManager
 {
 public:
 	SpeechManager();
+
+	void show_Menu();
+	void exitSystem();
+
 	~SpeechManager();
 
 private:
