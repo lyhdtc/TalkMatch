@@ -10,7 +10,7 @@ int main() {
 	while (true) {
 		SpeechManager::getInstance().show_Menu();
 
-		cout << "ÇëÊäÈëÄúµÄÑ¡Ôñ£º" << endl;
+		cout << "Select£º" << endl;
 		cin >> choice;
 		switch (choice) {
 			case 1:
