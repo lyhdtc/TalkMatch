@@ -17,6 +17,8 @@ public:
 	
 	void show_Menu();
 
+	void create_Speaker();
+
 	//exit system
 	void exitSystem();
 
@@ -39,7 +41,7 @@ public:
 	
 
 private:
-	SpeechManager() :round(0), v1{}, v2{}, vVectory{}, m_Speaker{} {};
+	SpeechManager() :round(0), v1{}, v2{}, vVectory{}, m_Speaker{} {this->create_Speaker(); };
 	~SpeechManager() {};
 	map<int, Speaker> m_Speaker;
 	int round;

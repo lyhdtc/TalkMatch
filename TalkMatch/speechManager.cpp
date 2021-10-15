@@ -11,6 +11,21 @@ void SpeechManager::show_Menu()
 	cout << "*******************************" << endl;
 }
 
+void SpeechManager::create_Speaker()
+{
+	string nameSeed = "ABCDEFGHIJKL";
+	for (auto n : nameSeed)
+	{
+		string temp = "player";
+		temp += n;
+		Speaker sp(temp);
+		this->v1.emplace_back(n - 'A' + 10001);
+		this->add_m_Speaker(n - 'A' + 10001, sp);
+		
+	}
+}
+
+
 void SpeechManager::exitSystem()
 {
 	cout << "Thanks!" << endl;
