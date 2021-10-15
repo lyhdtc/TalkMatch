@@ -3,12 +3,12 @@ using namespace std;
 #include"speechManager.h"
 
 int main() {
-	SpeechManager sm;
+	
 	int choice = 0;
 	
 
 	while (true) {
-		sm.show_Menu();
+		SpeechManager::getInstance().show_Menu();
 
 		cout << "ÇëÊäÈëÄúµÄÑ¡Ôñ£º" << endl;
 		cin >> choice;
@@ -20,7 +20,7 @@ int main() {
 			case 3:
 				break;
 			case 0:
-				sm.exitSystem();
+				SpeechManager::getInstance().exitSystem();
 				break;
 			default:
 				system("cls");
