@@ -2,6 +2,7 @@
 #include<iostream>
 #include<vector>
 #include<map>
+#include<algorithm>
 #include"speaker.h"
 
 using namespace std;
@@ -18,6 +19,9 @@ public:
 	void show_Menu();
 
 	void create_Speaker();
+
+	void start_Speech();
+	void speechDraw();
 
 	//exit system
 	void exitSystem();
@@ -41,7 +45,7 @@ public:
 	
 
 private:
-	SpeechManager() :round(0), v1{}, v2{}, vVectory{}, m_Speaker{} {this->create_Speaker(); };
+	SpeechManager() :round(1), v1{}, v2{}, vVectory{}, m_Speaker{} {this->create_Speaker(); };
 	~SpeechManager() {};
 	map<int, Speaker> m_Speaker;
 	int round;

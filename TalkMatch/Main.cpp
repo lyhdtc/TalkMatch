@@ -7,10 +7,10 @@ int main() {
 	int choice = 0;
 	//Speaker sp("asdf");
 	//cout << sp.Get_Name() << endl;
-	for (int i = 10001; i < 10013; i++)
-	{
-		cout << SpeechManager::getInstance().get_Speaker(i).Get_Name() << endl;
-	}
+	//for (int i = 10001; i < 10013; i++)
+	//{
+	//	cout << SpeechManager::getInstance().get_Speaker(i).Get_Name() << endl;
+	//}
 
 	while (true) {
 		SpeechManager::getInstance().show_Menu();
@@ -19,6 +19,7 @@ int main() {
 		cin >> choice;
 		switch (choice) {
 			case 1:
+				SpeechManager::getInstance().start_Speech();
 				break;
 			case 2:
 				break;

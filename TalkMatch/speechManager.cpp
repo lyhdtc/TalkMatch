@@ -25,6 +25,52 @@ void SpeechManager::create_Speaker()
 	}
 }
 
+void SpeechManager::start_Speech()
+{
+	//Drawing round1
+	speechDraw();
+	//Match round1
+
+	//Result round1
+
+	//Drawing round2
+
+	//Match round2
+
+	//Result round2
+
+	//Save result
+}
+
+
+
+void random_vector(vector<int>& V)
+{
+	random_shuffle(V.begin(), V.end());
+	for (auto v : V)
+	{
+		cout << v << " ";
+	}
+	cout << endl;
+
+}
+
+void SpeechManager::speechDraw()
+{
+	cout << "Round" << this->round << " Drawing" << endl;
+	cout << "-----------------------" << endl;
+	cout << "Result:" << endl;
+
+	if (this->round == 1)
+	{
+		random_vector(this->v1);
+	}
+	else if (this->round == 2)
+	{
+		random_vector(this->v2);
+	}
+}
+
 
 void SpeechManager::exitSystem()
 {
