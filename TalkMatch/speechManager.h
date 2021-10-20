@@ -3,6 +3,8 @@
 #include<vector>
 #include<map>
 #include<algorithm>
+#include<deque>
+#include<numeric>
 #include"speaker.h"
 
 using namespace std;
@@ -22,9 +24,16 @@ public:
 
 	void start_Speech();
 	void speechDraw();
+	void random_vector(vector<int>& V);
+
+	void match();
 
 	//exit system
 	void exitSystem();
+
+
+
+
 
 	//1st round winner
 	vector<int> v1;

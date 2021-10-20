@@ -30,35 +30,23 @@ void SpeechManager::start_Speech()
 	//Drawing round1
 	speechDraw();
 	//Match round1
-
-	//Result round1
+	match();
+	cout << "-----------------------" << endl;
+	SpeechManager::round_PP();
 
 	//Drawing round2
-
+	speechDraw();
 	//Match round2
-
-	//Result round2
+	match();
+	cout << "-----------------------" << endl;
 
 	//Save result
-}
-
-
-
-void random_vector(vector<int>& V)
-{
-	random_shuffle(V.begin(), V.end());
-	for (auto v : V)
-	{
-		cout << v << " ";
-	}
-	cout << endl;
-
 }
 
 void SpeechManager::speechDraw()
 {
 	cout << "Round" << this->round << " Drawing" << endl;
-	cout << "-----------------------" << endl;
+	
 	cout << "Result:" << endl;
 
 	if (this->round == 1)
@@ -70,6 +58,73 @@ void SpeechManager::speechDraw()
 		random_vector(this->v2);
 	}
 }
+
+void SpeechManager::random_vector(vector<int>& V)
+{
+	random_shuffle(V.begin(), V.end());
+	for (auto v : V)
+	{
+		cout << this->get_Speaker(v).Get_Name() << " ";
+	}
+	cout << endl;
+
+}
+
+void SpeechManager::match()
+{
+	cout << "Round" << this->round << " results: " << endl;
+	
+	vector<int> v_cur = this->round == 1 ? v1 : v2;
+	vector<pair<int, double>> temp_result(v_cur.size());
+	int pos = 0;
+	deque<double> temp_score;
+	pair<int, double> cur_result;
+
+	//Score Players, and delete max/min score then calculate avg
+	for (auto v : v_cur)
+	{
+		cur_result.first = v;
+		for (int i = 0; i < 10; i++)
+		{
+			temp_score.push_back((rand() % 401 + 600) / 10.f);
+		}
+		sort(temp_score.begin(), temp_score.end());
+		temp_score.pop_front();
+		temp_score.pop_back();
+
+		cur_result.second = accumulate(temp_score.begin(), temp_score.end(),0.0f)/8.f;
+		temp_result[pos++] = cur_result;
+		
+		this->get_Speaker(cur_result.first).Set_Score(cur_result.second, this->round);
+		
+	}	
+
+	//Sort Result and update player info
+	sort(temp_result.begin(), temp_result.end(), [](pair<int, double> a, pair<int, double> b) {return a.second > b.second; });
+	for (auto &tr : temp_result)
+	{
+		cout << this->get_Speaker(tr.first).Get_Name() << ": " << tr.second << endl;
+	}
+
+	//Save Result into next-round-vector
+	if (this->round == 1)
+	{
+		for (int i = 0; i < 6; ++i)
+		{
+			v2.emplace_back( temp_result[i].first);
+		}
+	}
+	else if (this->round == 2)
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			vVectory.emplace_back( temp_result[i].first);
+		}
+	}
+
+
+}
+
 
 
 void SpeechManager::exitSystem()
