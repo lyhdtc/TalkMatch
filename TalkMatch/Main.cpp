@@ -21,7 +21,7 @@ int main() {
 			case 1:
 				SpeechManager::getInstance().start_Speech();
 				break;
-			case 2:
+			case 2:				
 				break;
 			case 3:
 				break;

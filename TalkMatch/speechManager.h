@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include<fstream>
 #include<vector>
 #include<map>
 #include<algorithm>
@@ -28,6 +29,10 @@ public:
 
 	void match();
 
+	void showResult(vector<int>& V);
+
+
+	void saveRecord();
 	//exit system
 	void exitSystem();
 

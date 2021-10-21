@@ -27,27 +27,26 @@ void SpeechManager::create_Speaker()
 
 void SpeechManager::start_Speech()
 {
+
 	//Drawing round1
 	speechDraw();
 	//Match round1
 	match();
-	cout << "-----------------------" << endl;
+	cout << "--------------------------------------------" << endl;
 	SpeechManager::round_PP();
 
 	//Drawing round2
 	speechDraw();
 	//Match round2
 	match();
-	cout << "-----------------------" << endl;
-
+	cout << "--------------------------------------------" << endl;
 	//Save result
+	saveRecord();
 }
 
 void SpeechManager::speechDraw()
 {
-	cout << "Round" << this->round << " Drawing" << endl;
-	
-	cout << "Result:" << endl;
+	cout << "Round" << this->round << " Drawing Result:" << endl;
 
 	if (this->round == 1)
 	{
@@ -67,11 +66,11 @@ void SpeechManager::random_vector(vector<int>& V)
 		cout << this->get_Speaker(v).Get_Name() << " ";
 	}
 	cout << endl;
-
 }
 
 void SpeechManager::match()
 {
+	
 	cout << "Round" << this->round << " results: " << endl;
 	
 	vector<int> v_cur = this->round == 1 ? v1 : v2;
@@ -113,6 +112,7 @@ void SpeechManager::match()
 		{
 			v2.emplace_back( temp_result[i].first);
 		}
+		this->showResult(v2);
 	}
 	else if (this->round == 2)
 	{
@@ -120,12 +120,39 @@ void SpeechManager::match()
 		{
 			vVectory.emplace_back( temp_result[i].first);
 		}
+		this->showResult(vVectory);
 	}
 
 
 }
 
+void SpeechManager::showResult(vector<int>& V)
+{
+	cout << "Winner this round is: ";
+	for (auto v : V)
+	{
+		cout << this->get_Speaker(v).Get_Name() << " ";
+	}
+	cout << endl;
+}
 
+void SpeechManager::saveRecord()
+{
+	ofstream ofs;
+	ofs.open("speech.csv", ios::out | ios::app);
+	for (auto v : vVectory)
+	{
+		ofs << this->get_Speaker(v).Get_Name() << "," << this->get_Speaker(v).Get_Score(2) << ",";
+	}
+	ofs << endl;
+	ofs.close();
+	//v1 is initialized in speechManager(), so you can not clear this one(to avoid crash)
+	//this->v1.clear();
+	this->v2.clear();
+	vVectory.clear();
+	this->round = 1;
+	cout << "Rcord Saved!" << endl;
+}
 
 void SpeechManager::exitSystem()
 {
