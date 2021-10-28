@@ -4,27 +4,29 @@ using namespace std;
 
 Speaker::~Speaker()
 {
-
+	//printf("nooooo\n");
 }
 
 string Speaker::Get_Name()
 {
-	return Speaker::m_name;
+	return this->m_name;
 }
 
 void Speaker::Set_name(string name)
 {
-	Speaker::m_name = name;
+	this->m_name = name;
 	return;
 }
 
-float Speaker::Get_Score(int round)
+double Speaker::Get_Score(int round)
 {
-	return Speaker::m_Score[round];
+	//cout << round <<" "<< Speaker::m_Score[1]<<endl;	
+	return Speaker::m_Score[--round];
 }
 
-void Speaker::Set_Score(float score, int round)
+void Speaker::Set_Score(double score, int round)
 {
-	Speaker::m_Score[round] = score;
+	this->m_Score[--round] = score;
+	//cout << round << " " << Speaker::m_Score[round] << endl;
 	return;
 }

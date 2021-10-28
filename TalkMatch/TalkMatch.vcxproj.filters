@@ -32,5 +32,8 @@
     <ClInclude Include="speaker.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 #include"speechManager.h"
+#include "Main.h"
 
 int main() {
 	
@@ -9,24 +10,32 @@ int main() {
 	//cout << sp.Get_Name() << endl;
 	//for (int i = 10001; i < 10013; i++)
 	//{
-	//	cout << SpeechManager::getInstance().get_Speaker(i).Get_Name() << endl;
+	//	cout << SMR.get_Speaker(i).Get_Name() << endl;
 	//}
-
+	SpeechManager SMR;
 	while (true) {
-		SpeechManager::getInstance().show_Menu();
+		SMR.show_Menu();
+		//for (int i = 10001; i < 10013; i++)
+		//{
+		//	cout << SMR.get_Speaker(i).m_name << endl;
+		//}
+
+
+
 
 		cout << "Select£º" << endl;
 		cin >> choice;
 		switch (choice) {
 			case 1:
-				SpeechManager::getInstance().start_Speech();
+				SMR.start_Speech();
 				break;
-			case 2:				
+			case 2:		
+				SMR.loadRecord();
 				break;
 			case 3:
 				break;
 			case 0:
-				SpeechManager::getInstance().exitSystem();
+				SMR.exitSystem();
 				break;
 			default:
 				system("cls");

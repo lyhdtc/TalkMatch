@@ -33,7 +33,7 @@ void SpeechManager::start_Speech()
 	//Match round1
 	match();
 	cout << "--------------------------------------------" << endl;
-	SpeechManager::round_PP();
+	round_PP();
 
 	//Drawing round2
 	speechDraw();
@@ -46,6 +46,11 @@ void SpeechManager::start_Speech()
 
 void SpeechManager::speechDraw()
 {
+	for (int i = 0; i < 12; i++)
+	{
+		cout << v1[i] << endl;
+	}
+
 	cout << "Round" << this->round << " Drawing Result:" << endl;
 
 	if (this->round == 1)
@@ -93,9 +98,8 @@ void SpeechManager::match()
 
 		cur_result.second = accumulate(temp_score.begin(), temp_score.end(),0.0f)/8.f;
 		temp_result[pos++] = cur_result;
-		
-		this->get_Speaker(cur_result.first).Set_Score(cur_result.second, this->round);
-		
+		//get_Speaker(cur_result.first).Set_Score(cur_result.second,round);
+		m_Speaker[cur_result.first].m_Score[round - 1] = cur_result.second;
 	}	
 
 	//Sort Result and update player info
@@ -142,7 +146,7 @@ void SpeechManager::saveRecord()
 	ofs.open("speech.csv", ios::out | ios::app);
 	for (auto v : vVectory)
 	{
-		ofs << this->get_Speaker(v).Get_Name() << "," << this->get_Speaker(v).Get_Score(2) << ",";
+		ofs << this->get_Speaker(v).Get_Name() << "," << to_string(this->get_Speaker(v).Get_Score(2)) << ",";
 	}
 	ofs << endl;
 	ofs.close();
@@ -152,6 +156,47 @@ void SpeechManager::saveRecord()
 	vVectory.clear();
 	this->round = 1;
 	cout << "Rcord Saved!" << endl;
+	
+}
+
+void SpeechManager::loadRecord()
+{
+	ifstream ifs("speech.csv", ios::in);
+	if (!ifs.is_open())
+	{
+		cout << "No Record!" << endl;
+		return;
+	}
+	char ch;
+	ifs >> ch;
+	if (ifs.eof())
+	{
+		cout << "No Record!" << endl;
+		return;
+	}
+	ifs.putback(ch);
+
+	string s;
+	regex rec_reg("[A-Za-z0-9]+");
+	std::smatch match;
+	int index = 1;
+	while (!ifs.eof())
+	{
+		ifs >> s;
+		//cout << s << endl;
+		if (regex_match(s, match, rec_reg))
+		{
+			cout << "Match" << index++ << ": ";
+			for (auto m : match)
+			{
+				cout << " " << m;
+			}
+
+			cout << endl;
+		}
+	}
+	ifs.close();
+
 }
 
 void SpeechManager::exitSystem()

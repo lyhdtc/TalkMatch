@@ -144,6 +144,7 @@
     <ClCompile Include="speechManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Main.h" />
     <ClInclude Include="speaker.h" />
     <ClInclude Include="speechManager.h" />
   </ItemGroup>

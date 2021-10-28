@@ -10,15 +10,15 @@ public:
 	Speaker(string s) :m_name(s), m_Score{ 0,0 }{};
 	
 	void Set_name(string name);
-	void Set_Score(float score, int round);
+	void Set_Score(double score, int round);
 	string Get_Name();
-	float Get_Score(int round);
+	double Get_Score(int round);
 
-
+	string m_name;
+	double m_Score[2];
 
 	~Speaker();
 private:
-	string m_name;
-	float m_Score[2];
+
 };
 
